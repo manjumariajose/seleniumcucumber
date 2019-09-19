@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
     
-Feature: Verify the search result page
+Feature: Verify the Prod desc page
 
 Background: Flow till search result page
             Given open "chrome" browser and launch the application
@@ -22,6 +22,7 @@ Background: Flow till search result page
 Scenario: To verify the LHS flter
           Then select checkbox of any filter and verify the filterd page
           Then clear the filter and verify whether the applied filter removed from SRP
+          Then click on the first product in the list
 
 
 

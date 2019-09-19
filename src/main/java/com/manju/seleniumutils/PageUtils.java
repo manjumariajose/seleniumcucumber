@@ -69,19 +69,25 @@
         public void checkBoxSelect(String elementName) {
             WebElement chkbox1 = webDriver.findElement(By.xpath(elementName));
             chkbox1.click();
-            if (chkbox1.isSelected()) {
-                System.out.println("Filter applied");
-            }
             timeDelay(30);
         }
         public void clearFilter(String elementName){
-            WebElement ckbox =webDriver.findElement(By.cssSelector(elementName));
+            WebElement ckbox =webDriver.findElement(By.linkText(elementName));
             timeDelay(30);
             ckbox.click();
-            if (!ckbox.isSelected()){
-                System.out.println("Filter cleared");
-            }
+        }
 
+        public boolean isElementPresent(By elementName) {
+            try {
+                webDriver.findElement(elementName);
+                return true;
+            } catch (org.openqa.selenium.NoSuchElementException e) {
+                return false;
+            }
+        }
+
+        public boolean isElementVisible(String cssLocator){
+            return webDriver.findElement(By.cssSelector(cssLocator)).isDisplayed();
         }
 
     }

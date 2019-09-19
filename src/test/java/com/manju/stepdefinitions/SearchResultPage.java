@@ -17,7 +17,6 @@ public class SearchResultPage extends StepDefBase {
     public void setUp() {
         pageUtils = new PageUtils();
     }
-
     @Given("^open \"([^\"]*)\" browser and launch the application$")
     public void open_firefox_browser_and_launch_the_application(final String browserName) {
         pageUtils.launchBrowser(browserName);
@@ -49,6 +48,7 @@ public class SearchResultPage extends StepDefBase {
         pageUtils.submit(DriverInitializer.getProperty("searchsubmit"));
 
     }
+
     @Then("^verify the search result page$")
     public void verify_the_search_result_page() throws Throwable {
         pageUtils.waitForPageLoaded();
@@ -91,18 +91,20 @@ public class SearchResultPage extends StepDefBase {
     @Then("^select checkbox of any filter and verify the filterd page$")
     public void select_checkbox_of_any_filter_and_verify_the_filterd_page() throws StaleElementReferenceException {
         pageUtils.timeDelay(30);
-    pageUtils.checkBoxSelect(DriverInitializer.getProperty("filterName"));
-       }
+        pageUtils.checkBoxSelect(DriverInitializer.getProperty("filterName"));
+        Assert.assertTrue(pageUtils.isElementPresent(By.xpath(DriverInitializer.getProperty("filterName"))));
+    }
+
     @Then("^clear the filter and verify whether the applied filter removed from SRP$")
     public void clear_the_filter_and_verify_whether_the_applied_filter_removed_from_SRP() throws Throwable {
         pageUtils.waitForPageLoaded();
-        pageUtils.timeDelay(30);
         pageUtils.clearFilter(DriverInitializer.getProperty("clearFilter"));
-            }
+        Assert.assertFalse(pageUtils.isElementPresent(By.linkText(DriverInitializer.getProperty("clearFilter"))));
+    }
 
-//@After
-//    public void closebrowser() throws Throwable {
-//        pageUtils.getWebDriver().quit();
-//    }
+    @After
+    public void closebrowser() throws Throwable {
+        pageUtils.getWebDriver().quit();
+    }
 
 }

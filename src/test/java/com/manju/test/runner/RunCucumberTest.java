@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "F:/Automation/Amazon/src/test/resources/features/" ,
+@CucumberOptions(features = "src/test/resources/features/" ,
         glue ={"com/manju/stepdefinitions"})
 public class RunCucumberTest {
 }

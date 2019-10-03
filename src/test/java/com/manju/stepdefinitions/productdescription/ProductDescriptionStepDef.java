@@ -27,7 +27,7 @@ public class ProductDescriptionStepDef extends StepDefBase {
     }
 
     @Given("^open the \"([^\"]*)\"$")
-    public void open_url(final String url) {
+    public void open_the(final String url) {
         pageUtils.openURL(url);
         pageUtils.timeDelay(30);
         pageUtils.windowMax();
@@ -117,10 +117,6 @@ public class ProductDescriptionStepDef extends StepDefBase {
 
     @Then("^verify the product description page$")
     public void verify_the_product_description_page() throws Throwable {
-//        pageUtils.getTitle();
-//        final String actualTitle = pageUtils.getTitle();
-//        String expectedTitle = DriverInitializer.getProperty("prodDescTitle");
-//        Assert.assertTrue("Condition true", actualTitle.contains(expectedTitle));
         pageUtils.isElementVisible(DriverInitializer.getProperty("addToCart"));
         System.out.println("Product description page verified");
     }
@@ -134,6 +130,123 @@ public class ProductDescriptionStepDef extends StepDefBase {
         verify_the_search_result_page();
     }
 
+
+    @Then("^verify Frequently bought together place holder$")
+    public void verify_Frequently_bought_together_place_holder() throws Throwable {
+        WebElement element= pageUtils.containsText(DriverInitializer.getProperty("frequentlyBoughtTogether"));
+        String text =element.getText();
+        if(text.contains("Frequently bought together")){
+            System.out.println("Frequently bought together place holder verified");
+        }
+    }
+
+    @Then("^verify Sponsored products related to this item place holder$")
+    public void verify_Sponsored_products_related_to_this_item_place_holder_and_left_and_right_arrow() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("sponsoredProductsRelated"));
+        String text = element.getText();
+        if (text.contains("Sponsored products related to this item")) {
+            System.out.println("Sponsored products related to this item place holder verified");
+        }
+//        pageUtils.click(DriverInitializer.getProperty("rightArrow"));
+//        System.out.println("Right arrow clicked");
+//        pageUtils.click(DriverInitializer.getProperty("leftArrow"));
+//        System.out.println("Left arrow clicked");
+    }
+
+    @Then("^verify What other items do customers buy after viewing this item\\? place holder$")
+    public void verify_What_other_items_do_customers_buy_after_viewing_this_item_place_holder() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("otherItems"));
+        String text = element.getText();
+        if (text.contains("What other items do customers buy after viewing this item?")) {
+            System.out.println("What other items do customers buy after viewing this item? place holder verified");
+        }
+    }
+
+    @Then("^verify Have a question\\? place holder$")
+    public void verify_Have_a_question_place_holder() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("haveQuestions"));
+        String text = element.getText();
+        if (text.contains("Have a question")) {
+            System.out.println("Have a question place holder verified");
+        }
+    }
+
+    @Then("^verify Product Description place holder$")
+    public void verify_Product_Description_place_holder() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("productDescription"));
+        String text = element.getText();
+        if (text.contains("Product ")) {
+            System.out.println("Product Description place holder verified");
+        }
+    }
+
+    @Then("^verify Compare items place holder$")
+    public void verify_Compare_items_place_holder() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("compareItems"));
+        String text = element.getText();
+        if (text.contains("Compare")) {
+            System.out.println("Compare items place holder verified");
+        }
+    }
+
+    @Then("^verify Videos section$")
+    public void verify_Videos_section() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("video"));
+        String text = element.getText();
+        if (text.contains("Videos")) {
+            System.out.println("Videos place holder verified");
+        }
+    }
+
+    @Then("^verify Customer questions & answers section$")
+    public void verify_Customer_questions_answers_section() throws Throwable {
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("Q&A"));
+        String text = element.getText();
+        if (text.contains("Customer questions & answers")) {
+            System.out.println("Customer questions & answers place holder verified");
+        }
+    }
+
+    @Then("^click on the Add to Cart button$")
+    public void click_on_the_Add_to_Cart_button() throws Throwable {
+        pageUtils.click(DriverInitializer.getProperty("addToCart"));
+
+    }
+
+    @Then("^Click on the add button$")
+    public void click_on_the_add_button() throws Throwable {
+        pageUtils.timeDelay(20);
+        WebElement element = pageUtils.containsText(DriverInitializer.getProperty("popOverHeader"));
+        String text = element.getText();
+        if (text.contains("Add to your order")) {
+            System.out.println("A pop up block displayed");
+            pageUtils.timeDelay(30);
+            pageUtils.click(DriverInitializer.getProperty("addButton"));
+        }
+    }
+
+    @Then("^verify the shopping cart$")
+    public void verify_the_shopping_cart() throws Throwable {
+        pageUtils.timeDelay(30);
+        pageUtils.isElementPresent(By.xpath(DriverInitializer.getProperty("proceedToCheckout")));
+        System.out.println("Product added to cart");
+
+    }
+
+    @Then("^click on the Buy now button$")
+    public void click_on_the_Buy_now_button() throws Throwable {
+        pageUtils.click(DriverInitializer.getProperty("buyNow"));
+    }
+
+    @Then("^verify user navigates to sign in page$")
+    public void verify_user_navigates_to_sign_in_page() throws Throwable {
+        //pageUtils.click(DriverInitializer.getProperty("addButton"));
+        String actualTitle = pageUtils.getTitle();
+        String expectedTitle = DriverInitializer.getProperty("signInTitle");
+        Assert.assertEquals(actualTitle,expectedTitle);
+        System.out.println("user navigated to sign in page");
+
+    }
 
 
     @After

@@ -1,7 +1,8 @@
-package com.manju.stepdefinitions;
+package com.manju.stepdefinitions.searchResult;
 
 import com.manju.seleniumutils.DriverInitializer;
 import com.manju.seleniumutils.PageUtils;
+import com.manju.stepdefinitions.StepDefBase;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;

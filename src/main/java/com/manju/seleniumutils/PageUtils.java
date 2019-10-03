@@ -89,5 +89,9 @@
         public boolean isElementVisible(String cssLocator){
             return webDriver.findElement(By.cssSelector(cssLocator)).isDisplayed();
         }
+        public WebElement containsText(String elementName){
+            return webDriver.findElement(By.xpath(elementName));
+        }
+
 
     }

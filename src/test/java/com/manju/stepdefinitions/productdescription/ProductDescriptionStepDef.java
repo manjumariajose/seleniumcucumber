@@ -8,9 +8,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import org.junit.Before;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -240,7 +244,10 @@ public class ProductDescriptionStepDef extends StepDefBase {
 
     @Then("^verify user navigates to sign in page$")
     public void verify_user_navigates_to_sign_in_page() throws Throwable {
-        //pageUtils.click(DriverInitializer.getProperty("addButton"));
+//        pageUtils.click(DriverInitializer.getProperty("noThanks"));
+//        pageUtils.timeDelay(30);
+        Alert alert = webDriver.switchTo().alert();
+               alert .accept();
         String actualTitle = pageUtils.getTitle();
         String expectedTitle = DriverInitializer.getProperty("signInTitle");
         Assert.assertEquals(actualTitle,expectedTitle);
